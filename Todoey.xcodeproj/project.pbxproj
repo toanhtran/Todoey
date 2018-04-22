@@ -12,8 +12,9 @@
 		4B18FEF42036928400544885 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B18FEF22036928400544885 /* Main.storyboard */; };
 		4B18FEF62036928400544885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B18FEF52036928400544885 /* Assets.xcassets */; };
 		4B18FEF92036928400544885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B18FEF72036928400544885 /* LaunchScreen.storyboard */; };
-		4B7AA267203CC440001C5B0A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B7AA265203CC43F001C5B0A /* DataModel.xcdatamodeld */; };
-		4B935AD4203E5BE300613B0A /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B935AD3203E5BE300613B0A /* CategoryTableViewController.swift */; };
+		4B935AD4203E5BE300613B0A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B935AD3203E5BE300613B0A /* CategoryViewController.swift */; };
+		4B935AD8203F9A1400613B0A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B935AD7203F9A1400613B0A /* Item.swift */; };
+		4B935ADA203F9A2100613B0A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B935AD9203F9A2100613B0A /* Category.swift */; };
 		5421F6EDB24014166421D49C /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F82E81B36BD9A4A65B5189 /* Pods_Todoey.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +27,9 @@
 		4B18FEF52036928400544885 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B18FEF82036928400544885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B18FEFA2036928400544885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B7AA266203CC440001C5B0A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		4B935AD3203E5BE300613B0A /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		4B935AD3203E5BE300613B0A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		4B935AD7203F9A1400613B0A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		4B935AD9203F9A2100613B0A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B54340E44E3BF17BD646D3E0 /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
 		C6F82E81B36BD9A4A65B5189 /* Pods_Todoey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,7 +89,8 @@
 		4B2CBDCA203A848A00BD1D4B /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				4B7AA265203CC43F001C5B0A /* DataModel.xcdatamodeld */,
+				4B935AD9203F9A2100613B0A /* Category.swift */,
+				4B935AD7203F9A1400613B0A /* Item.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -95,7 +98,7 @@
 		4B2CBDCB203A84AD00BD1D4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B935AD3203E5BE300613B0A /* CategoryTableViewController.swift */,
+				4B935AD3203E5BE300613B0A /* CategoryViewController.swift */,
 				4B18FEF02036928400544885 /* TodoListViewController.swift */,
 			);
 			path = Controllers;
@@ -138,7 +141,6 @@
 				4B18FEE82036928400544885 /* Frameworks */,
 				4B18FEE92036928400544885 /* Resources */,
 				E6E652178AA8DB07C5E14C1B /* [CP] Embed Pods Frameworks */,
-				74FA7BEADEE401CB536431DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -156,7 +158,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "ToAnh T. Tran";
 				TargetAttributes = {
 					4B18FEEA2036928400544885 = {
@@ -215,21 +217,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		74FA7BEADEE401CB536431DB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E6E652178AA8DB07C5E14C1B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,10 +244,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B935AD8203F9A1400613B0A /* Item.swift in Sources */,
 				4B18FEF12036928400544885 /* TodoListViewController.swift in Sources */,
-				4B7AA267203CC440001C5B0A /* DataModel.xcdatamodeld in Sources */,
 				4B18FEEF2036928400544885 /* AppDelegate.swift in Sources */,
-				4B935AD4203E5BE300613B0A /* CategoryTableViewController.swift in Sources */,
+				4B935AD4203E5BE300613B0A /* CategoryViewController.swift in Sources */,
+				4B935ADA203F9A2100613B0A /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +288,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -307,6 +296,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -357,6 +347,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -364,6 +355,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -447,19 +439,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4B7AA265203CC43F001C5B0A /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4B7AA266203CC440001C5B0A /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 4B7AA266203CC440001C5B0A /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4B18FEE32036928400544885 /* Project object */;
 }
